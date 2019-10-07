@@ -1,0 +1,24 @@
+branches: master
+-- doctest: True
+
+constraint-set no-extras
+  constraints: months -aeson
+  constraints: months -cassava
+  constraints: months -http-api-data
+  constraints: months -lucid
+  constraints: months -swagger2
+
+constraint-set no-aeson
+  constraints: months -aeson
+
+constraint-set no-cassava
+  constraints: months -cassava
+
+constraint-set no-http-api-data
+  constraints: months -http-api-data
+
+constraint-set no-aeson
+  constraints: months -aeson
+
+constraint-set no-aeson
+  constraints: months -swagger2
