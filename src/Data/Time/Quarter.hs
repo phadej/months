@@ -8,11 +8,16 @@ module Data.Time.Quarter (
     -- * Types
     Quarter (..),
     YearQuarter (..),
-    -- * Functions
+    -- * Conversion with Day
     dayToYearQuarter,
     firstDayOfYearQuarter,
     lastDayOfYearQuarter,
+#ifdef MIN_VERSION_intervals
+    yearQuarterInterval,
+#endif
+    -- * Conversions with Text
     yearQuarterToText,
+    parseYearQuarter,
     ) where
 
 import Control.Applicative ((<|>))
@@ -46,7 +51,6 @@ import qualified Data.Csv as Csv
 #endif
 
 #ifdef MIN_VERSION_http_api_data
-import Data.Bifunctor  (first)
 import Web.HttpApiData (FromHttpApiData (..), ToHttpApiData (..))
 #endif
 
@@ -54,11 +58,19 @@ import Web.HttpApiData (FromHttpApiData (..), ToHttpApiData (..))
 import Lucid (ToHtml (..))
 #endif
 
+#ifdef MIN_VERSION_intervals
+import Numeric.Interval.NonEmpty (Interval, (...))
+#endif
+
 #ifdef MIN_VERSION_swagger2
 import Control.Lens ((&), (.~), (?~))
 import Data.Swagger (ToParamSchema (..), ToSchema (..))
 
 import qualified Data.Swagger as Swagger
+#endif
+
+#if defined(MIN_VERSION_cassava) || defined(MIN_VERSION_http_api_data)
+import Data.Bifunctor  (first)
 #endif
 
 -------------------------------------------------------------------------------
@@ -244,6 +256,15 @@ parseYearQuarter =  AT.parseOnly $ do
           <|> Q3 <$ AT.char '3'
           <|> Q4 <$ AT.char '4'
       return (YearQuarter y q)
+
+#ifdef MIN_VERSION_intervals
+-- | Day interval of month
+--
+-- >>> yearQuarterInterval $ YearQuarter 2017 Q2
+-- 2017-04-01 ... 2017-06-30
+yearQuarterInterval :: YearQuarter -> Interval Day
+yearQuarterInterval m = firstDayOfYearQuarter m ... lastDayOfYearQuarter m
+#endif
 
 -------------------------------------------------------------------------------
 -- Internals

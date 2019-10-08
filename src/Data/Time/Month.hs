@@ -8,11 +8,16 @@ module Data.Time.Month (
     -- * Types
     Month (..),
     YearMonth (..),
-    -- * Functions
+    -- * Conversion with Day
     dayToYearMonth,
     firstDayOfYearMonth,
     lastDayOfYearMonth,
+#ifdef MIN_VERSION_intervals
+    yearMonthInterval,
+#endif
+    -- * Conversions with Text
     yearMonthToText,
+    parseYearMonth,
     ) where
 
 import Control.Applicative ((<|>))
@@ -48,8 +53,11 @@ import qualified Data.Csv as Csv
 #endif
 
 #ifdef MIN_VERSION_http_api_data
-import Data.Bifunctor  (first)
 import Web.HttpApiData (FromHttpApiData (..), ToHttpApiData (..))
+#endif
+
+#ifdef MIN_VERSION_intervals
+import Numeric.Interval.NonEmpty (Interval, (...))
 #endif
 
 #ifdef MIN_VERSION_lucid
@@ -61,6 +69,10 @@ import Control.Lens ((&), (.~), (?~))
 import Data.Swagger (ToParamSchema (..), ToSchema (..))
 
 import qualified Data.Swagger as Swagger
+#endif
+
+#if defined(MIN_VERSION_cassava) || defined(MIN_VERSION_http_api_data)
+import Data.Bifunctor  (first)
 #endif
 
 -------------------------------------------------------------------------------
@@ -272,6 +284,15 @@ parseYearMonth =  AT.parseOnly $ do
         b <- AT.digit
         let c2d c = ord c .&. 15
         return $! c2d a * 10 + c2d b
+
+#ifdef MIN_VERSION_intervals
+-- | Day interval of month
+--
+-- >>> yearMonthInterval $ YearMonth 2017 February
+-- 2017-02-01 ... 2017-02-28
+yearMonthInterval :: YearMonth -> Interval Day
+yearMonthInterval m = firstDayOfYearMonth m ... lastDayOfYearMonth m
+#endif
 
 -------------------------------------------------------------------------------
 -- Internals
