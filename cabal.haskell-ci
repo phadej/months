@@ -9,6 +9,66 @@ constraint-set no-extras
   constraints: months -lucid
   constraints: months -swagger2
 
+constraint-set no-web
+  constraints: months +aeson
+  constraints: months +cassava
+  constraints: months -http-api-data
+  constraints: months +intervals
+  constraints: months -lucid
+  constraints: months -swagger2
+
+-- Only one Off
+
+constraint-set no-aeson
+  constraints: months -aeson
+  constraints: months +cassava
+  constraints: months +http-api-data
+  constraints: months +intervals
+  constraints: months +lucid
+  constraints: months +swagger2
+
+constraint-set no-cassava
+  constraints: months +aeson
+  constraints: months -cassava
+  constraints: months +http-api-data
+  constraints: months +intervals
+  constraints: months +lucid
+  constraints: months +swagger2
+
+constraint-set no-http-api-data
+  constraints: months +aeson
+  constraints: months +cassava
+  constraints: months -http-api-data
+  constraints: months +intervals
+  constraints: months +lucid
+  constraints: months +swagger2
+
+constraint-set no-intervals
+  constraints: months +aeson
+  constraints: months +cassava
+  constraints: months +http-api-data
+  constraints: months -intervals
+  constraints: months +lucid
+  constraints: months +swagger2
+
+constraint-set no-lucid
+  constraints: months +aeson
+  constraints: months +cassava
+  constraints: months +http-api-data
+  constraints: months +intervals
+  constraints: months -lucid
+  constraints: months +swagger2
+
+constraint-set no-swagger2
+  constraints: months +aeson
+  constraints: months +cassava
+  constraints: months +http-api-data
+  constraints: months +intervals
+  constraints: months +lucid
+  constraints: months -swagger2
+
+-- Only one On
+
 constraint-set only-aeson
   constraints: months +aeson
   constraints: months -cassava

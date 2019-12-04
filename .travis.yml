@@ -164,6 +164,20 @@ script:
   - rm -rf cabal.project.local
   # Constraint set no-extras
   - ${CABAL} v2-build $WITHCOMPILER --disable-tests --disable-benchmarks --constraint='months -aeson' --constraint='months -cassava' --constraint='months -http-api-data' --constraint='months -intervals' --constraint='months -lucid' --constraint='months -swagger2' all | color_cabal_output
+  # Constraint set no-web
+  - ${CABAL} v2-build $WITHCOMPILER --disable-tests --disable-benchmarks --constraint='months +aeson' --constraint='months +cassava' --constraint='months -http-api-data' --constraint='months +intervals' --constraint='months -lucid' --constraint='months -swagger2' all | color_cabal_output
+  # Constraint set no-aeson
+  - ${CABAL} v2-build $WITHCOMPILER --disable-tests --disable-benchmarks --constraint='months -aeson' --constraint='months +cassava' --constraint='months +http-api-data' --constraint='months +intervals' --constraint='months +lucid' --constraint='months +swagger2' all | color_cabal_output
+  # Constraint set no-cassava
+  - ${CABAL} v2-build $WITHCOMPILER --disable-tests --disable-benchmarks --constraint='months +aeson' --constraint='months -cassava' --constraint='months +http-api-data' --constraint='months +intervals' --constraint='months +lucid' --constraint='months +swagger2' all | color_cabal_output
+  # Constraint set no-http-api-data
+  - ${CABAL} v2-build $WITHCOMPILER --disable-tests --disable-benchmarks --constraint='months +aeson' --constraint='months +cassava' --constraint='months -http-api-data' --constraint='months +intervals' --constraint='months +lucid' --constraint='months +swagger2' all | color_cabal_output
+  # Constraint set no-intervals
+  - ${CABAL} v2-build $WITHCOMPILER --disable-tests --disable-benchmarks --constraint='months +aeson' --constraint='months +cassava' --constraint='months +http-api-data' --constraint='months -intervals' --constraint='months +lucid' --constraint='months +swagger2' all | color_cabal_output
+  # Constraint set no-lucid
+  - ${CABAL} v2-build $WITHCOMPILER --disable-tests --disable-benchmarks --constraint='months +aeson' --constraint='months +cassava' --constraint='months +http-api-data' --constraint='months +intervals' --constraint='months -lucid' --constraint='months +swagger2' all | color_cabal_output
+  # Constraint set no-swagger2
+  - ${CABAL} v2-build $WITHCOMPILER --disable-tests --disable-benchmarks --constraint='months +aeson' --constraint='months +cassava' --constraint='months +http-api-data' --constraint='months +intervals' --constraint='months +lucid' --constraint='months -swagger2' all | color_cabal_output
   # Constraint set only-aeson
   - ${CABAL} v2-build $WITHCOMPILER --disable-tests --disable-benchmarks --constraint='months +aeson' --constraint='months -cassava' --constraint='months -http-api-data' --constraint='months -intervals' --constraint='months -lucid' --constraint='months -swagger2' all | color_cabal_output
   # Constraint set only-cassava
