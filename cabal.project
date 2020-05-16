@@ -1,1 +1,2 @@
 packages: .
+allow-newer: swagger-2.6:QuickCheck
