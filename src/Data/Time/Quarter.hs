@@ -70,7 +70,7 @@ import qualified Data.Swagger as Swagger
 #endif
 
 #if defined(MIN_VERSION_cassava) || defined(MIN_VERSION_http_api_data)
-import Data.Bifunctor  (first)
+import Data.Bifunctor (first)
 #endif
 
 -------------------------------------------------------------------------------
@@ -237,7 +237,7 @@ firstDayOfYearQuarter (YearQuarter y m) = fromGregorian y m' 1
 -- >>> lastDayOfYearQuarter $ YearQuarter 2017 Q1
 -- 2017-03-31
 --
--- >>> lastDayOfYearQuarter $ YearQuarter 2016 Q2 
+-- >>> lastDayOfYearQuarter $ YearQuarter 2016 Q2
 -- 2016-06-30
 --
 lastDayOfYearQuarter :: YearQuarter -> Day

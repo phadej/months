@@ -72,7 +72,7 @@ import qualified Data.Swagger as Swagger
 #endif
 
 #if defined(MIN_VERSION_cassava) || defined(MIN_VERSION_http_api_data)
-import Data.Bifunctor  (first)
+import Data.Bifunctor (first)
 #endif
 
 -------------------------------------------------------------------------------
