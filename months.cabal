@@ -1,17 +1,18 @@
-cabal-version: 2.2
-name:          months
-version:       0.2
-synopsis:      MonthName
-category:      Data, Time
+cabal-version:      2.2
+name:               months
+version:            0.2
+synopsis:           MonthName
+category:           Data, Time
 description:
   Month and Quarter enumerations and some basic function and instances.
 
-homepage:      https://github.com/phadej/months
-bug-reports:   https://github.com/phadej/months/issues
-author:        Oleg Grenrus <oleg.grenrus@iki.fi>
-maintainer:    Oleg Grenrus <oleg.grenrus@iki.fi>
-license:       BSD-3-Clause
-license-file:  LICENSE
+homepage:           https://github.com/phadej/months
+bug-reports:        https://github.com/phadej/months/issues
+author:             Oleg Grenrus <oleg.grenrus@iki.fi>
+maintainer:         Oleg Grenrus <oleg.grenrus@iki.fi>
+license:            BSD-3-Clause
+license-file:       LICENSE
+extra-source-files: CHANGELOG.md
 tested-with:
   GHC ==7.8.4
    || ==7.10.3
