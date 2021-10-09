@@ -1,4 +1,4 @@
-0.2 [2021-01-xx]
+0.2 [2021-03-11]
 ----------------
 
 * Move to use `time-1.11` types where applicable
