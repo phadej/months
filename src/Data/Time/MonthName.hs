@@ -31,8 +31,6 @@ import Data.Time.Compat
        (Year, Day, fromGregorian, gregorianMonthLength, toGregorian)
 import Data.Typeable       (Typeable)
 import GHC.Generics        (Generic)
-import Prelude ()
-import Prelude.Compat
 import Test.QuickCheck     (Arbitrary (..), arbitraryBoundedEnum)
 
 import qualified Data.Attoparsec.Text     as AT
